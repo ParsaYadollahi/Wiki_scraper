@@ -13,8 +13,9 @@ src = response.content
 soup = BeautifulSoup(src, "lxml")
 
 base = 'https://en.wikipedia.org'
-links = soup.select("p a[href*=wiki]")
+links = soup.select("p a[href*=wiki]") # only the part of the entire html page we want
 
+# Json info going to input into db
 json_db = {}
 json_db.setdefault('Source', query)
 urls = json_db.setdefault('Destination', {})
@@ -30,10 +31,10 @@ print(json_db)
 ####
 # graph 1
 ####
-graph1 = pydot.Dot(graph_type='digraph')
+graph1 = pydot.Dot(graph_type='digraph') # create graph obj
 root = pydot.Node(url.split('/')[-1])
-graph1.add_node(root)
-for v in urls:
+graph1.add_node(root) # add root node
+for v in urls: # add children (not url but name of wiki content)
     node = pydot.Node(v.split('/')[-1], style="filled", fillcolor="green")
     graph1.add_node(node)
     graph1.add_edge(pydot.Edge(root,node))
@@ -54,16 +55,17 @@ for i in range(3):
 # Merge Graph 1 & 2 into 3
 ####
 graph3 = pydot.Dot(graph_type='digraph')
-for node in graph1.get_nodes():
+for node in graph1.get_nodes(): # add nodes to graph 3
     graph3.add_node(node)
 for node in graph2.get_nodes():
     graph3.add_node(node)
-for edge in graph1.get_edges():
+for edge in graph1.get_edges(): # add edges to graph 3
     graph3.add_edge(edge)
 for edge in graph2.get_edges():
     graph3.add_edge(edge)
 
 # display(Image(graph3.create_png())) -> Display the graph
 
+# link the root and children of graph 1 and graph 2
 source = graph1.get_node(graph1.get_edges()[0].get_destination())[0]
 dest = graph2.get_node(graph2.get_edges()[0].get_source())[0]

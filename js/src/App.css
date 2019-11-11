@@ -20,3 +20,47 @@
 .App-link {
   color: #09d3ac;
 }
+
+
+/* GRAPH CSS */
+.node circle {
+	fill: rgb(236, 236, 236);
+	stroke: rgb(71, 34, 194);
+	stroke-width: 1px;
+}
+
+.node text {
+  font-size: 12px;
+  font-family: 'Lora', serif;
+	background-color: black;
+  fill: rgb(0, 0, 0);
+  overflow: visible;
+}
+
+.node {
+	cursor: pointer;
+}
+
+path.link {
+	fill: none;
+	stroke: rgb(179, 179, 179);
+  stroke-width: 1.5px;
+  overflow: initial;
+}
+
+body {
+	background-color: white;
+  overflow: hidden;
+  width: 100%
+}
+
+span {
+  font-family: 'Lora', serif;
+	color: #F4F4F4;
+	text-shadow: 0 1px 4px black;
+	float: right;
+}
+svg {
+  width: 100vw;
+  height: 100vh;
+}

@@ -21,45 +21,90 @@ class App extends React.Component {
 ReactDOM.render(<App />, document.getElementById('root'));
 
 class Graph extends React.Component {
-  render() {
-    const data = {
-      "name": "Eve",
-      "children": [
-        {
-          "name": "Cain"
-        },
-        {
-          "name": "Seth",
-          "children": [
-            {
-              "name": "Enos"
-            },
-            {
-              "name": "Noam"
-            }
-          ]
-        },
-        {
-          "name": "Abel"
-        },
-        {
-          "name": "Awan",
-          "children": [
-            {
-              "name": "Enoch"
-            }, {
-              "name": "yeeew"
-            }, {
-              "name": "NIKOLAI"
-            }, {
-              "name": "Parsa"
-            }, {
-              "name": "HELLO"
-            }
-          ]
-        }
-      ]
+  constructor(props) {
+    super(props)
+    this.state = { 
+      hover: false,
+      data: {
+        "name": "Eve",
+        "content" : 'The is Eve',
+        "url" : 'eve.com',
+        "children": [
+          {
+            "name": "Cain",
+            "content" : 'The is Cain',
+            "url" : 'cain.com',
+          },
+          {
+            "name": "Seth",
+            "content" : 'The is Seith',
+            "url" : 'seith.com',
+            "children": [
+              {
+                "name": "Enos",
+                "content" : 'The is Enos',
+                "url" : 'Enos.com',
+              },
+              {
+                "name": "Noam",
+                "content" : 'The is Noam',
+                "url" : 'Noam.com',
+              }
+            ]
+          },
+          {
+            "name": "Abel",
+            "content" : 'The is Abel',
+            "url" : 'Abel.com',
+          },
+          {
+            "name": "Awan",
+            "content" : 'The is Awan',
+            "url" : 'awan.com',
+            "children": [
+              {
+                "name": "Enoch",
+                "content" : 'The is Enoch',
+                "url" : 'enoch.com',
+              }, {
+                "name": "yeeew",
+                "content" : 'The is yeh neg',
+                "url" : 'yeh neg.com',
+              }, {
+                "name": "NIKOLAI",
+                "content" : 'The is Nik',
+                "url" : 'Nik.com',
+              }, {
+                "name": "Parsa",
+                "content" : 'The is PAAAATRICK',
+                "url" : 'PATCICK.com',
+              }, {
+                "name": "HELLO",
+                "content" : 'The is gang',
+                "url" : 'gang.com',
+              }
+            ]
+          }, {
+            "name": "Mia",
+            "children": [
+              {
+                "name": "MIA"
+              }
+            ]
+          }
+        ]
+      }
     }
+  }
+  toggleHover(a, b) {
+    debugger;
+    console.log(b)
+  }
+  handleClick(a, b) {
+    alert(b)
+  }
+
+  render() {
     return (
           <TransformWrapper
           defaultScale={1}
@@ -76,14 +121,19 @@ class Graph extends React.Component {
             <TransformComponent>
           <div>
           <Tree
-            data={data}
+            data={this.state.data}
             duration = {500}
             nodeRadius={15}
             margins={{ top: 20, bottom: 10, left: 30, right: 200 }}
             height={600}
             width={600}
             animated
-            duration={800}/>
+            duration={800}
+            gProps={{
+              onMouseEnter: this.toggleHover,
+              onClick :this.handleClick
+            }}
+          />
           </div>
           </TransformComponent>
           </React.Fragment>
@@ -96,3 +146,4 @@ class Graph extends React.Component {
 ReactDOM.render(<Graph />, document.getElementById('graph'));
 
 export default App;
+

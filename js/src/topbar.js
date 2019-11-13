@@ -8,7 +8,6 @@ class Topbar extends React.Component {
         super(props);
         this.state = {
             input_form : ''
-
         };        
     }
     submithandle = (event) => {

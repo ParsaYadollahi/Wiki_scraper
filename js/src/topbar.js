@@ -16,7 +16,7 @@ class Topbar extends React.Component {
         let def = this.state.input_form
         alert(this.state.input_form)
 
-        axios.post('http://localhost:3000/getContent/:name',
+        axios.post('http://localhost:3000/clickContent/:name',
         {name : this.input_form})
       .then((response) => {
         console.log(response);

@@ -17,7 +17,7 @@ json_db = {}
 json_db.setdefault('name', query)
 content = wikipedia.summary(query).split('.')
 desc = ''
-for c in range(2):
+for c in range(3):
     desc += content[c] + '.'
 
 json_db.setdefault('content', desc)

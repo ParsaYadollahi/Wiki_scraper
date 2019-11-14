@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import form_style from './css/topbar.module.css';
+import axios from 'axios'
 
 
 class Topbar extends React.Component {
@@ -14,6 +15,14 @@ class Topbar extends React.Component {
         event.preventDefault();
         let def = this.state.input_form
         alert(this.state.input_form)
+
+        axios.post('http://localhost:3000/getContent/:name',
+        {name : this.input_form})
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
         this.setState({'input_form': ''})
     }
     changehandle = (event) => {

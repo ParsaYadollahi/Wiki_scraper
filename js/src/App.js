@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import * as d3 from "d3";
 import ReactDOM from 'react-dom';
-import logo from './logo.svg';
 import './App.css';
 import Topbar from './topbar.js'
 import Tree from 'react-tree-graph'
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import axios from 'axios'
 
 class App extends React.Component {
   
@@ -15,6 +14,7 @@ class App extends React.Component {
           <Topbar />
           </div>
       );
+        alert(this.input_form)
   }
 }
 
@@ -22,9 +22,10 @@ ReactDOM.render(<App />, document.getElementById('root'));
 
 class Graph extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = { 
+    super(props);
+    this.state = {
       hover: false,
+      name: '',
       data: {
         "name": "Eve",
         "content" : 'The is Eve',
@@ -52,56 +53,31 @@ class Graph extends React.Component {
               }
             ]
           },
-          {
-            "name": "Abel",
-            "content" : 'The is Abel',
-            "url" : 'Abel.com',
-          },
-          {
-            "name": "Awan",
-            "content" : 'The is Awan',
-            "url" : 'awan.com',
-            "children": [
-              {
-                "name": "Enoch",
-                "content" : 'The is Enoch',
-                "url" : 'enoch.com',
-              }, {
-                "name": "yeeew",
-                "content" : 'The is yeh neg',
-                "url" : 'yeh neg.com',
-              }, {
-                "name": "NIKOLAI",
-                "content" : 'The is Nik',
-                "url" : 'Nik.com',
-              }, {
-                "name": "Parsa",
-                "content" : 'The is PAAAATRICK',
-                "url" : 'PATCICK.com',
-              }, {
-                "name": "HELLO",
-                "content" : 'The is gang',
-                "url" : 'gang.com',
-              }
-            ]
-          }, {
-            "name": "Mia",
-            "children": [
-              {
-                "name": "MIA"
-              }
-            ]
-          }
         ]
       }
     }
   }
-  toggleHover(a, b) {
-    debugger;
-    console.log(b)
+  toggleHover(obj, n) {
+    axios.get('http://localhost:3000/hoverContent/:name',
+        {name: n})
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
+
   }
-  handleClick(a, b) {
-    alert(b)
+  handleClick(obj, n) {
+    axios.post('http://localhost:3000/getContent/:name',
+        {name : n})
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
+  }
+  componentDidMount() {
+    this.handleClick();
   }
 
   render() {
@@ -115,18 +91,18 @@ class Graph extends React.Component {
           {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
           <React.Fragment>
           <div className="tools">
-              <button onClick={zoomIn}>Zoom in</button>
-              <button onClick={zoomOut}>Zoom out</button>
+              <button className="zoom" onClick={zoomIn}>+</button>
+              <button className="zoom" onClick={zoomOut}>-</button>
             </div>
             <TransformComponent>
           <div>
           <Tree
             data={this.state.data}
             duration = {500}
-            nodeRadius={15}
+            nodeRadius={10}
             margins={{ top: 20, bottom: 10, left: 30, right: 200 }}
-            height={600}
-            width={600}
+            height={400}
+            width={400}
             animated
             duration={800}
             gProps={{
@@ -139,7 +115,7 @@ class Graph extends React.Component {
           </React.Fragment>
         )}
       </TransformWrapper>
-      );
+    );
   }
 }
 

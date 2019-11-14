@@ -3,7 +3,6 @@ import urllib.request, urllib.parse
 from bs4 import BeautifulSoup
 import wikipedia
 
-
 query = input()
 response = requests.get(wikipedia.page(query).url)
 src = response.content
@@ -20,7 +19,9 @@ json_db.setdefault('name', query)
 json_db.setdefault('url', wikipedia.page(query).url)
 children = []
 
+# add children to root
 for i in range(3):
+    child_dict = {}
     url = urllib.parse.urljoin(base, links[i]['href'])
     title = url.split('/')[-1]
     # content = wikipedia.summary(title)

@@ -25,7 +25,7 @@ json_db.setdefault('url', wikipedia.page(query).url)
 children = []
 
 # add children to root
-for i in range(2):
+for i in range(3):
     child_dict = {}
     url = urllib.parse.urljoin(base, links[i]['href'])
     title = url.split('/')[-1]

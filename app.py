@@ -11,7 +11,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://nikolai:kevin1234@scrapeit
 app.debug = True
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host=127.0.0.1,port=5000)
 
 class node(db.Model):
     __tablename__ = 'nodetable'

@@ -23,9 +23,6 @@
 
 
 /* GRAPH CSS */
-div.custom-container {
-}
-
 .node circle {
 	fill: rgb(255, 255, 255);
 	stroke: rgb(162, 196, 252);
@@ -87,5 +84,22 @@ svg {
 
 .zoom:hover {
   background-color: rgba(211, 210, 210, 0.3);    
-  box-shadow: 0px 4px 20 px 0 px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 4px; 
+}
+
+.show_content {
+  font-size: 10px;
+  width: auto;
+  height : 100%;
+  border: 1px solid white;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  margin: 5px;
+}
+
+.show_content_text {
+  margin-left : 30px;
+  padding-right: 30px;
+  color: #747272;
 }

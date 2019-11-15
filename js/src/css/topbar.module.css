@@ -8,9 +8,10 @@
     border-top: 0px;
     position: relative;
     background-color: rgba(243, 243, 243, 0.3);
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
     transition: 0.3s background-color ease-in-out, 0.3s box-shadow ease-in-out;
 }
 .input_form:hover {
-    background-color: rgba(211, 210, 210, 0.3);    
-    box-shadow: 0px 4px 20 px 0 px rgba(0, 0, 0, 0.5);
+    background-color: rgba(194, 192, 192, 0.3);    
+    box-shadow: 0px 4px 2px 0px rgba(0, 0, 0, 0.1);
 }

@@ -7,7 +7,7 @@ import json
 app = Flask(__name__)
 db = SQLAlchemy(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:globe1234@localhost:5432/scrapper"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://nikolai:kevin1234@scrapeitup-db.cfedpg5iwaqw.us-east-1.rds.amazonaws.com:5432/postgres"
 app.debug = True
 
 if __name__ == '__main__':

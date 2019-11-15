@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import form_style from './css/topbar.module.css';
 import axios from 'axios'
+import { thisExpression } from '@babel/types';
 
 
 class Topbar extends React.Component {
@@ -16,23 +17,30 @@ class Topbar extends React.Component {
         let def = this.state.input_form
         alert(this.state.input_form)
 
+        const headers = {
+            'Content-Type': 'application/json',
+          }
 
-        axios.post('http://localhost:5000/submit', null,
-         {params : {name : this.state.input_form,
-          }})
+        axios.post('http://localhost:5000/submit',
+         {
+            headers : headers,
+            body: ({ name : '' + this.state.input_form })
+        })
           .then((response) => {
             console.log(response);
           }, (error) => {
             console.log(error);
           });
 
-    //     axios.post('http://localhost:5000/submit', null,
-    //         {params: {"name": this.state.input_form}})
-    //     .then((response) => {
-    //     console.log(response);
-    //   }, (error) => {
-    //     console.log(error);
-    //   });
+        //   axios({
+        //     method: 'post',
+        //     url: '/user/12345',
+        //     data: {
+        //       firstName: 'Fred',
+        //       lastName: 'Flintstone'
+        //     }
+        //   });
+
         this.setState({'input_form': ''})
     }
     changehandle = (event) => {

@@ -3,8 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 from random import randint
 from scrapper import scrapperWiki
 import json
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 db = SQLAlchemy(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://nikolai:kevin1234@scrapeitup-db.cfedpg5iwaqw.us-east-1.rds.amazonaws.com:5432/postgres"
@@ -40,7 +42,7 @@ def submitNode():
         parentKey = 0
         req_data = request.get_json(silent=True)
         print(req_data)
-        name = req_data['name']
+        name = req_data['body']['name']
         worker = scrapperWiki(name)
         pkey = randint(1300, 4500)
         url = str(worker.getUrl())

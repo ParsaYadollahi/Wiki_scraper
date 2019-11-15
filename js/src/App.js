@@ -58,26 +58,27 @@ class Graph extends React.Component {
     }
   }
   toggleHover(obj, n) {
-    axios.get('http://localhost:3000/hoverContent/:name',
-        {name: n})
-      .then((response) => {
-        console.log(response);
-      }, (error) => {
-        console.log(error);
-      });
-
+    axios.get(
+      'http://localhost:3000/hoverContent',
+      {params: {name: n}})
+    .then((response) => {
+      console.log(response);
+    }, (error) => {
+      console.log(error);
+    });
   }
+  
   handleClick(obj, n) {
-    axios.post('http://localhost:3000/getContent/:name',
-        {name : n})
-      .then((response) => {
-        console.log(response);
-      }, (error) => {
-        console.log(error);
-      });
-  }
-  componentDidMount() {
-    this.handleClick();
+    axios.post(
+      'http://localhost:3000/getContent', null,
+      {params: {name: n}})
+    .then((response) => {
+      console.log(response);
+      this.setState({data : response.body})
+
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   render() {
@@ -95,11 +96,11 @@ class Graph extends React.Component {
               <button className="zoom" onClick={zoomOut}>-</button>
             </div>
             <TransformComponent>
-          <div>
+          <div className="custom-container">
           <Tree
             data={this.state.data}
             duration = {500}
-            nodeRadius={10}
+            nodeRadius={12}
             margins={{ top: 20, bottom: 10, left: 30, right: 200 }}
             height={400}
             width={400}
@@ -109,6 +110,9 @@ class Graph extends React.Component {
               onMouseEnter: this.toggleHover,
               onClick :this.handleClick
             }}
+            svgProps={{
+              className: 'custom'
+            }}/>
           />
           </div>
           </TransformComponent>

@@ -23,12 +23,14 @@
 
 
 /* GRAPH CSS */
+div.custom-container {
+}
+
 .node circle {
 	fill: rgb(255, 255, 255);
 	stroke: rgb(162, 196, 252);
 	stroke-width: 2px;
 }
-
 
 .node text {
   font-size: 12px;
@@ -36,6 +38,13 @@
 	background-color: rgb(255, 255, 255);
   fill: rgb(0, 0, 0);
   overflow: visible;
+}
+
+svg.custom .node circle:hover {
+  fill: rgb(220, 231, 250);
+  transition: 0.3s fill ease-in-out, 0.3s box-shadow ease-in-out;
+	stroke: rgb(162, 196, 252);
+	stroke-width: 2.5px;
 }
 
 .node {

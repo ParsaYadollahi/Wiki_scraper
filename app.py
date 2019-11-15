@@ -11,10 +11,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://nikolai:kevin1234@scrapeit
 app.debug = True
 
 if __name__ == '__main__':
-    app.run(host=127.0.0.1,port=5000)
+    app.run(host='127.0.0.1',port=5000)
 
 class node(db.Model):
-    __tablename__ = 'nodetable'
+    __tablename__ = 'nodetable''
     pkey = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text())
     url = db.Column(db.Text())
@@ -39,6 +39,7 @@ def submitNode():
         
         parentKey = 0
         req_data = request.get_json(silent=True)
+        print(req_data)
         name = req_data['name']
         worker = scrapperWiki(name)
         pkey = randint(1300, 4500)

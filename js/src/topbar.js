@@ -16,14 +16,23 @@ class Topbar extends React.Component {
         let def = this.state.input_form
         alert(this.state.input_form)
 
-        axios.post('http://localhost:3000/clickContent', null,
-            {params: {name: this.state.input_form}})
-        .then((response) => {
-        console.log(response);
-        
-      }, (error) => {
-        console.log(error);
-      });
+
+        axios.post('http://localhost:5000/submit', null,
+         {params : {name : this.state.input_form,
+          }})
+          .then((response) => {
+            console.log(response);
+          }, (error) => {
+            console.log(error);
+          });
+
+    //     axios.post('http://localhost:5000/submit', null,
+    //         {params: {"name": this.state.input_form}})
+    //     .then((response) => {
+    //     console.log(response);
+    //   }, (error) => {
+    //     console.log(error);
+    //   });
         this.setState({'input_form': ''})
     }
     changehandle = (event) => {

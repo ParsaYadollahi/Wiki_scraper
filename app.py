@@ -14,7 +14,7 @@ if __name__ == '__main__':
     app.run(host='127.0.0.1',port=5000)
 
 class node(db.Model):
-    __tablename__ = 'nodetable''
+    __tablename__ = 'nodetable'
     pkey = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text())
     url = db.Column(db.Text())

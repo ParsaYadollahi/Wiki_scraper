@@ -18,13 +18,15 @@ class node(db.Model):
     pkey = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text())
     url = db.Column(db.Text())
-    parent = db.Column(db.Integer)    
+    parent = db.Column(db.Integer)
+    content = db.Column(db.Text())    
 
-    def __init__(self, pkey, name, url, parent):
+    def __init__(self, pkey, name, url, parent, content):
         self.pkey = pkey
         self.name = name
         self.url = url
         self.parent = parent
+        self.content = content
 
 @app.route('/')
 def index():
@@ -41,16 +43,23 @@ def submitNode():
         worker = scrapperWiki(name)
         pkey = randint(1300, 4500)
         url = str(worker.getUrl())
-        children = json.loads(worker.children)
+        content = worker.paragraph
         '''parent = db.session.query(db.exists().where(nodetable.name == name)).scalar()
             if parent is not None:
                 parentKey = parent.pkey
         '''
-
-        
-        data = node(pkey, name, url, 0)
+        json_reponse = json.dumps(worker.full) 
+        data = node(pkey, name, url, parentKey, content)
         db.session.add(data)
         db.session.commit()
+
+        for child in worker.children:
+            primaryKey = randint(300, 3000)
+            data = node(primaryKey, child['name'], child['url'], pkey, child['content'])
+            db.session.add(data)
+            db.session.commit()
+
+        return json_reponse
 
 
         

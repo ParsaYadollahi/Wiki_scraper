@@ -21,6 +21,7 @@ for c in range(3):
     desc += content[c] + '.'
 
 json_db.setdefault('content', desc)
+print(desc)
 json_db.setdefault('url', wikipedia.page(query).url)
 children = []
 
@@ -43,4 +44,4 @@ for i in range(3):
     
 json_db.setdefault('children', children)
 
-print(json_db)
+#print(json_db)

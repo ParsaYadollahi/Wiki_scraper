@@ -85,7 +85,9 @@ svg {
 .zoom:hover {
   background-color: rgba(211, 210, 210, 0.3);    
   box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
-  border-radius: 4px; 
+  border-radius: 4px;
+  color: black;
+  transition: 0.3s color ease-in-out, 0.3s box-shadow ease-in-out, 0.3s background-color ease-in-out
 }
 
 .show_content {
@@ -99,7 +101,14 @@ svg {
 }
 
 .show_content_text {
-  margin-left : 30px;
-  padding-right: 30px;
+  display: table;
+  padding-left : 40px;
+  padding-right: 40px;
   color: #747272;
+}
+
+.icons {
+  vertical-align: middle;
+  position: absolute;
+  padding: 8px;
 }

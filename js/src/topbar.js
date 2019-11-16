@@ -31,16 +31,6 @@ class Topbar extends React.Component {
           }, (error) => {
             console.log(error);
           });
-
-        //   axios({
-        //     method: 'post',
-        //     url: '/user/12345',
-        //     data: {
-        //       firstName: 'Fred',
-        //       lastName: 'Flintstone'
-        //     }
-        //   });
-
         this.setState({'input_form': ''})
     }
     changehandle = (event) => {
